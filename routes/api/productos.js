@@ -61,4 +61,36 @@ router.put('/:id', async(req, res, next) => {
 })
 
 
+//CREAR NUEVOS PRODUCTOS
+router.post('/', async(req, res, next) => {
+    try {
+        
+        const dataNueva = req.body
+        
+        const producto = new Producto(dataNueva)
+
+        const nuevoProducto = await producto.save()
+
+        res.json({ result: nuevoProducto})
+    } catch (error) {
+        next(error)
+    }
+})
+
+
+//ELIMINAR PRODUCTOS
+router.delete('/:id', async (req, res, next)=>{
+    try {
+        
+        const _id = req.params.id
+
+        const productoBorrado = await Producto.deleteOne({ _id: _id})
+
+        res.json()
+
+    } catch (error) {
+        next(error)
+    }
+})
+
 module.exports = router

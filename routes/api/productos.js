@@ -2,13 +2,41 @@ const express = require('express')
 const router = express.Router()
 const {query, validationResult } = require('express-validator');
 const Producto = require('../../models/Productos')
+const basicAuth = require('../../lib/basicAuth')
+
 
 //LISTAR PRODUCTOS
-router.get('/', async (req, res, next) => {
+router.get('/', basicAuth, async (req, res, next) => {
     try {
-        const productos = await Producto.find()
+
+        const filtro = {}
+
+        //Add filtros
+        const name = req.query.name
+        const precio = req.query.precio
+        const venta = req.query.forSale
+
+        const skip = req.query.skip
+        const limit = req.query.limit
+
+
+        //Condiciones para los filtros
+        if (name){
+            filtro.name = name
+        }
+
+        if(precio){
+            filtro.precio = precio
+        }
+
+        if(venta){
+            filtro.forSale = venta
+        }
+
+        const productos = await Producto.lista(filtro, skip, limit)
 
         res.json( {results: productos})
+
     } catch(error){
         next(error)
     }
@@ -33,7 +61,7 @@ router.get('/:id', async (req, res, next) => {
         
         const _id = req.params.id
 
-        const producto = await Producto.findOne({ _id:_id})
+        const producto = await Producto.lista({ _id:_id})
 
         res.json({ result: producto})
 
@@ -44,7 +72,7 @@ router.get('/:id', async (req, res, next) => {
 
 
 //ACTUALIZAR PRODUCTOS
-router.put('/:id', async(req, res, next) => {
+router.put('/:id', basicAuth, async(req, res, next) => {
     try {
         
         const _id = req.params.id
@@ -62,7 +90,7 @@ router.put('/:id', async(req, res, next) => {
 
 
 //CREAR NUEVOS PRODUCTOS
-router.post('/', async(req, res, next) => {
+router.post('/', basicAuth, async(req, res, next) => {
     try {
         
         const dataNueva = req.body
@@ -79,7 +107,7 @@ router.post('/', async(req, res, next) => {
 
 
 //ELIMINAR PRODUCTOS
-router.delete('/:id', async (req, res, next)=>{
+router.delete('/:id', basicAuth, async (req, res, next)=>{
     try {
         
         const _id = req.params.id

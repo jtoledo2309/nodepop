@@ -8,6 +8,14 @@ const productoSchema = mongoose.Schema({
     etiquetas: [String]
 })
 
+productoSchema.statics.lista = function(filtro, skip, limit){
+    const query = Producto.find(filtro)
+    query.skip(skip)
+    query.limit(limit)
+
+    return query.exec();
+}
+
 const Producto = mongoose.model('Producto', productoSchema)
 
 module.exports = Producto;

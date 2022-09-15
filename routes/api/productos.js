@@ -90,7 +90,7 @@ router.put('/:id', basicAuth, async(req, res, next) => {
 
 
 //CREAR NUEVOS PRODUCTOS
-router.post('/', basicAuth, async(req, res, next) => {
+router.post('/', async(req, res, next) => {
     try {
         
         const dataNueva = req.body

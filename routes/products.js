@@ -1,8 +1,12 @@
 var express = require('express');
+const Producto = require('../models/Productos');
 var router = express.Router();
 
 /* GET para product page. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
+
+  res.locals.productos = await Producto.lista()
+
   res.render('products', { title: 'Productos Nodepop' });
 });
 

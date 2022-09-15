@@ -1,27 +1,41 @@
-'use strict'
+"use strict";
 
-const connection = require('./lib/connectMongoose')
+const connection = require("./lib/connectMongoose");
 
-const Producto = require('./models/Productos')
+const Producto = require("./models/Productos");
 
-async function main(){
+async function main() {
+  await initProductos();
 
-    await initProductos()
-
-    connection.close()
+  connection.close();
 }
 
-main().catch(err => console.log('Hubo un error:', err))
+main().catch((err) => console.log("Hubo un error:", err));
 
-async function initProductos(){
+async function initProductos() {
+  const deleted = await Producto.deleteMany();
 
-    const deleted = await Producto.deleteMany()
-
-    const inserted = await Producto.insertMany([
-        { name: 'iphone', forSale: true, precio: 450, etiquetas:['mobile']},
-        { name: 'camiseta', forSale: false, precio: 25, etiquetas:['lifestyle', 'work']},
-        { name: 'coche', forSale: true, precio: 5000, etiquetas:['motor']}      
- ])
-
+  const inserted = await Producto.insertMany([
+    {
+      name: "iphone",
+      forSale: true,
+      precio: 450,
+      etiquetas: ["mobile"],
+      imagen: "iphone.jpeg",
+    },
+    {
+      name: "camiseta",
+      forSale: false,
+      precio: 25,
+      etiquetas: ["lifestyle", "work"],
+      imagen: "camiseta.jpeg",
+    },
+    {
+      name: "coche",
+      forSale: true,
+      precio: 5000,
+      etiquetas: ["motor"],
+      imagen: "coche.jpg",
+    },
+  ]);
 }
-

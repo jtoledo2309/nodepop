@@ -5,9 +5,9 @@ var router = express.Router();
 /* GET para product page. */
 router.get('/', async function(req, res, next) {
 
-  res.locals.productos = await Producto.lista()
+  const productos = await Producto.lista()
 
-  res.render('products', { title: 'Productos Nodepop' });
+  res.render('products', { title: 'Productos Nodepop' , productos });
 });
 
 module.exports = router;

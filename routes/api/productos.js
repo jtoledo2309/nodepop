@@ -13,6 +13,7 @@ router.get("/", basicAuth, async (req, res, next) => {
     const name = req.query.name;
     const precio = req.query.precio;
     const venta = req.query.forSale;
+    const tag = req.query.tag;
 
     const skip = req.query.skip;
     const limit = req.query.limit;
@@ -31,6 +32,10 @@ router.get("/", basicAuth, async (req, res, next) => {
       filtro.forSale = venta;
     }
 
+    if (tag) {
+      filtro.etiquetas = tag;
+    }
+
     const productos = await Producto.lista(filtro, skip, limit, sort);
 
     res.json({ results: productos });
@@ -42,7 +47,6 @@ router.get("/", basicAuth, async (req, res, next) => {
 router.get(
   "/en_query_string",
   [
-    // validaciones
     query("orderby").isAlphanumeric().withMessage("must be alphanumeric"),
     query("solo").isNumeric().withMessage("must be numeric"),
   ],
@@ -54,36 +58,6 @@ router.get(
     res.json({ result: true });
   }
 );
-
-router.get("/:id", async (req, res, next) => {
-  try {
-    const _id = req.params.id;
-
-    const producto = await Producto.lista({ _id: _id });
-
-    res.json({ result: producto });
-  } catch (error) {
-    next(error);
-  }
-});
-
-//ACTUALIZAR PRODUCTOS
-router.put("/:id", basicAuth, async (req, res, next) => {
-  try {
-    const _id = req.params.id;
-    const data = req.body;
-
-    const productoActualizado = await Producto.findOneAndUpdate(
-      { _id: _id },
-      data,
-      { new: true }
-    );
-
-    res.json({ result: productoActualizado });
-  } catch (error) {
-    next(error);
-  }
-});
 
 //CREAR NUEVOS PRODUCTOS
 router.post("/", basicAuth, async (req, res, next) => {
@@ -101,17 +75,25 @@ router.post("/", basicAuth, async (req, res, next) => {
   }
 });
 
-//ELIMINAR PRODUCTOS
-router.delete("/:id", basicAuth, async (req, res, next) => {
-  try {
-    const _id = req.params.id;
+//OBTENER UN JSON CON LOS TAGS EXISTENTES
+router.get("/etiquetas", async (req, res, next) => {
+  const productos = await Producto.lista();
 
-    const productoBorrado = await Producto.deleteOne({ _id: _id });
+  const etiquetasLista = contarTags(productos);
 
-    res.json();
-  } catch (error) {
-    next(error);
-  }
+  res.json({ tags: etiquetasLista });
 });
+
+function contarTags(productos) {
+  let listaTags = [];
+  productos.forEach((producto) => {
+    for (let i = 0; i < producto.etiquetas.length; i++) {
+      if (!listaTags.includes(producto.etiquetas[i])) {
+        listaTags.push(producto.etiquetas[i]);
+      }
+    }
+  });
+  return listaTags;
+}
 
 module.exports = router;

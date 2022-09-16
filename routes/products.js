@@ -10,6 +10,7 @@ router.get("/", async function (req, res, next) {
   const name = req.query.name;
   const precio = req.query.precio;
   const venta = req.query.forSale;
+  const tag = req.query.tag;
 
   //Criterios para la pagina
   const skip = req.query.skip;
@@ -28,6 +29,10 @@ router.get("/", async function (req, res, next) {
     filtro.forSale = venta;
   }
 
+  if (tag) {
+    filtro.etiquetas = tag;
+  }
+
   const productos = await Producto.lista(filtro, skip, limit, sort);
 
   res.render("products", { title: "Productos Nodepop", productos });
@@ -37,20 +42,18 @@ router.get("/", async function (req, res, next) {
 router.get("/etiquetas", async (req, res, next) => {
   const productos = await Producto.lista();
 
-  console.log(productos);
-
   const etiquetasLista = contarTags(productos);
 
-  res.send("Los tagas por los que puede filtrar: " + etiquetasLista);
+  res.send("Los tags por los que puede filtrar: " + etiquetasLista);
 });
 
 function contarTags(productos) {
   let listaTags = [];
   productos.forEach((producto) => {
     for (let i = 0; i < producto.etiquetas.length; i++) {
-      //if (!producto.etiquetas[i] in listaTags) {
-      listaTags.push(producto.etiquetas[i]);
-      // }
+      if (!listaTags.includes(producto.etiquetas[i])) {
+        listaTags.push(producto.etiquetas[i]);
+      }
     }
   });
   return listaTags;

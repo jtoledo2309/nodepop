@@ -28,14 +28,22 @@ Además se podran añadir nuevos productos mediante el comando post. Para ello, 
 user: admin
 password: 1234
 
-Por ultimo, cunenta con una pagina en la que podremos ver todos los productos. Tambien permite filtrar por el nombre del producto, precio, etiquetas o estado del producto.
+Por ultimo, cuenta con una pagina frontend en la que podremos ver todos los productos.
 
 ```
 http://localhost:3000/products
 ```
 
-Por ultimo tambien podremos visualizar los tags existentes en la plataforma en:
+Tambien permite filtrar por el nombre(name) del producto, precio(precio), etiquetas(tag) o estado del producto(forSale) tanto en la pagina forntend como en el API.
+
+Por ultimo, podremos visualizar los tags existentes en la plataforma en:
 
 ```
 http://localhost:3000/products/etiquetas
+```
+
+Y en el API:
+
+```
+http://localhost:3000/api/productos/etiquetas
 ```

@@ -16,6 +16,7 @@ router.get("/", basicAuth, async (req, res, next) => {
 
     const skip = req.query.skip;
     const limit = req.query.limit;
+    const sort = req.query.sort;
 
     //Condiciones para los filtros
     if (name) {
@@ -30,7 +31,7 @@ router.get("/", basicAuth, async (req, res, next) => {
       filtro.forSale = venta;
     }
 
-    const productos = await Producto.lista(filtro, skip, limit);
+    const productos = await Producto.lista(filtro, skip, limit, sort);
 
     res.json({ results: productos });
   } catch (error) {

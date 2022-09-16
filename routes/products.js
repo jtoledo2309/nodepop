@@ -6,12 +6,15 @@ var router = express.Router();
 router.get("/", async function (req, res, next) {
   const filtro = {};
 
+  //Criterios del producto
   const name = req.query.name;
   const precio = req.query.precio;
   const venta = req.query.forSale;
 
+  //Criterios para la pagina
   const skip = req.query.skip;
   const limit = req.query.limit;
+  const sort = req.query.sort;
 
   if (name) {
     filtro.name = name;
@@ -25,7 +28,7 @@ router.get("/", async function (req, res, next) {
     filtro.forSale = venta;
   }
 
-  const productos = await Producto.lista(filtro, skip, limit);
+  const productos = await Producto.lista(filtro, skip, limit, sort);
 
   res.render("products", { title: "Productos Nodepop", productos });
 });
@@ -38,7 +41,7 @@ router.get("/etiquetas", async (req, res, next) => {
 
   const etiquetasLista = contarTags(productos);
 
-  res.json({ etiquetas: etiquetasLista });
+  res.send("Los tagas por los que puede filtrar: " + etiquetasLista);
 });
 
 function contarTags(productos) {

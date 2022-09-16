@@ -5,13 +5,14 @@ const productoSchema = mongoose.Schema({
   forSale: Boolean,
   precio: Number,
   imagen: String,
-  etiquetas: ["hola", "prueba"],
+  etiquetas: [String],
 });
 
-productoSchema.statics.lista = function (filtro, skip, limit) {
+productoSchema.statics.lista = function (filtro, skip, limit, sort) {
   const query = Producto.find(filtro);
   query.skip(skip);
   query.limit(limit);
+  query.sort(sort);
 
   return query.exec();
 };

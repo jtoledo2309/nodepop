@@ -18,7 +18,7 @@ router.get("/", async function (req, res, next) {
   const sort = req.query.sort;
 
   if (name) {
-    filtro.name = name;
+    filtro.name = new RegExp("^" + name, "i");
   }
 
   if (precio) {

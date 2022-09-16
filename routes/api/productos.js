@@ -21,7 +21,7 @@ router.get("/", basicAuth, async (req, res, next) => {
 
     //Condiciones para los filtros
     if (name) {
-      filtro.name = name;
+      filtro.name = new RegExp("^" + name, "i");
     }
 
     if (precio) {

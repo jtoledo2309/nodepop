@@ -10,25 +10,39 @@ node initDB.js
 
 La aplicacion tiene instalados los modulos necesarios para su correcto funcionamiento presentes en el package.json
 
-para iniciar Nodepop, una vez tengamos la BBDD lista, debemos ejecutar el comando:
+##Para iniciar Nodepop, una vez tengamos la BBDD lista, debemos ejecutar el comando:
 
 ```
 npm run dev
 ```
 
-Nodepop cuenta con un API en la que podremos ver un archivo json con todos los productos subidos a la plataforma.
+##Para iniciar en producción:
 
-URL del API:
+```
+npm start
+```
+
+Para comenzar, Nodepop cuenta con una pagina principal (llamada index) que sirve como bienvenida al usuario.
+
+```
+http://localhost:3000
+```
+
+Nodepop cuenta con un API en la que podremos ver un archivo json con todos los productos subidos a la plataforma y crear productos nuevos. Para ello es necesario identificarse con las credenciales:
+user: admin <br>
+password: 1234
+
+##URL del API:
 
 ```
 http://localhost:3000/api/productos
 ```
 
 Además se podran añadir nuevos productos mediante el comando post. Para ello, es necesario autenticarse con:
-user: admin
-password: 1234
 
 Por ultimo, cuenta con una pagina frontend en la que podremos ver todos los productos.
+
+##URL PAGINA FRONTEND CON LISTADO PRODUCTOS
 
 ```
 http://localhost:3000/products

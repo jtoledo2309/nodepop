@@ -2,15 +2,32 @@
 
 const connection = require("./lib/connectMongoose");
 
-const Producto = require("./models/Productos");
+const { Producto, Usuario } = require("./models");
 
 async function main() {
   await initProductos();
+
+  await initUsuarios();
 
   connection.close();
 }
 
 main().catch((err) => console.log("Hubo un error:", err));
+
+async function initUsuarios() {
+  const deleted = await Usuario.deleteMany();
+
+  const inserted = await Usuario.insertMany([
+    {
+      email: "admin@test.com",
+      password: 1234,
+    },
+    {
+      email: "user@test.com",
+      password: 1234,
+    },
+  ]);
+}
 
 async function initProductos() {
   const deleted = await Producto.deleteMany();

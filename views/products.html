@@ -1,0 +1,14 @@
+<% include cabecera.html %>
+
+<h1>Productos Nodepop</h1>
+
+<h2>Listado de productos</h2>
+
+<% productos.forEach(producto => { %>
+<p>Nombre del producto: <%= producto.name %></p>
+<p>Estado: <%= producto.forSale ? 'Se vende' : 'En busqueda' %></p>
+<p>Coste del producto: <%= producto.precio %></p>
+<p>Etiquetas: <%= producto.etiquetas %></p>
+<img src="/images/<%=producto.imagen %>" />
+
+<% }) %> <% include footer.html %>

@@ -22,6 +22,8 @@ class LoginController {
         return;
       }
 
+      req.session.usuarioLogado = usuario._id;
+
       res.redirect("/privado");
     } catch (err) {
       next(err);

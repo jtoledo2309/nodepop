@@ -35,7 +35,7 @@ router.get("/", async function (req, res, next) {
 
   const productos = await Producto.lista(filtro, skip, limit, sort);
 
-  res.render("products", { title: "Productos Nodepop", productos });
+  res.render("products", { title: "Nodepop", productos });
 });
 
 //Mostrar las etiquetas disponibles en la pagina

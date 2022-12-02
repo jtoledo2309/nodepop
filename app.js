@@ -4,6 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 const sessionAuth = require("./lib/sessionAuthMiddleware");
 const i18n = require("./lib/i18nConfigure");
@@ -46,8 +47,16 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 2,
     },
+    storage: MongoStore.create({
+      mongoUrl: "mongodb://127.0.0.1/nodepop",
+    }),
   })
 );
+
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
 
 app.use("/", require("./routes/index"));
 app.use("/change-locale", require("./routes/change-locale"));
@@ -55,6 +64,7 @@ app.use("/products", require("./routes/products"));
 
 app.get("/login", loginController.index);
 app.post("/login", loginController.post);
+app.get("/logout", loginController.logout);
 app.get("/privado", sessionAuth, privadoController.index);
 
 // Catch 404 and forward to error handler

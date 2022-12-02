@@ -47,8 +47,8 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 2,
     },
-    storage: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1/nodepop",
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_CONNECTION_STRING,
     }),
   })
 );

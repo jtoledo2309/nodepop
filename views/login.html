@@ -4,7 +4,9 @@
   <div class="container px-5">
     <form method="POST">
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <label for="exampleInputEmail1" class="form-label"
+          ><%= __('Direccion de email') %></label
+        >
         <input
           type="email"
           name="email"
@@ -14,11 +16,13 @@
           aria-describedby="emailHelp"
         />
         <div id="emailHelp" class="form-text">
-          We'll never share your email with anyone else.
+          <%= __('No compartiremos tu email con nadie') %>
         </div>
       </div>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <label for="exampleInputPassword1" class="form-label"
+          ><%= __('Contraseña') %></label
+        >
         <input
           type="password"
           name="password"
@@ -26,7 +30,7 @@
           id="exampleInputPassword1"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary"><%= __('Enviar') %></button>
       <div><%= error %></div>
     </form>
   </div>

@@ -4,5 +4,16 @@
 	"Bienvenido a": "Bienvenido a",
 	"Privado": "Privado",
 	"Invalid credentials": "Invalid credentials",
-	"Esta seccion es para": "Esta seccion es para"
+	"Esta seccion es para": "Esta seccion es para",
+	"Productos": "Productos",
+	"Nombre del producto": "Nombre del producto",
+	"Estado": "Estado",
+	"Precio": "Precio",
+	"Etiquetas": "Etiquetas",
+	"Productos Nodepop": "Productos Nodepop",
+	"Listado": "Listado",
+	"Direccion de email": "Direccion de email",
+	"Contraseña": "Contraseña",
+	"Enviar": "Enviar",
+	"No compartiremos tu email con nadie": "No compartiremos tu email con nadie"
 }

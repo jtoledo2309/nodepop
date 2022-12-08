@@ -1,7 +1,18 @@
 {
-	"El color es": "The color is",
-	"Bienvenido a": "Welcome to",
-	"Privado": "Privado",
-	"Invalid credentials": "Invalid credentials",
-	"Esta seccion es para": "Esta seccion es para"
+  "El color es": "The color is",
+  "Bienvenido a": "Welcome to",
+  "Privado": "Private",
+  "Invalid credentials": "Invalid credentials",
+  "Esta seccion es para": "This section is made for",
+  "Productos": "Products",
+  "Nombre del producto": "Product name",
+  "Estado": "Condition",
+  "Precio": "Price",
+  "Etiquetas": "Tags",
+  "Productos Nodepop": "Nodepop Products",
+  "Listado": "List",
+  "Direccion de email": "Email adress",
+  "Contraseña": "Password",
+  "Enviar": "Submit",
+  "No compartiremos tu email con nadie": " We'll never share your email with anyone else."
 }

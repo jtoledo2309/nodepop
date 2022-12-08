@@ -7,6 +7,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
 const sessionAuth = require("./lib/sessionAuthMiddleware");
+const jwtAuthMiddleware = require("./lib/jwtAuthMiddleware");
 const i18n = require("./lib/i18nConfigure");
 const LoginController = require("./routes/loginController");
 const PrivadoController = require("./routes/privadoController");
@@ -28,14 +29,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+const loginController = new LoginController();
 //RUTA DEL API
-app.use("/api/productos", require("./routes/api/productos"));
+app.use("/api/productos", jwtAuthMiddleware, require("./routes/api/productos"));
+app.use("/api/login", loginController.postJWT);
 
 app.use(i18n.init);
 
 //RUTAS DE LA WEB
-
-const loginController = new LoginController();
 const privadoController = new PrivadoController();
 
 app.use(

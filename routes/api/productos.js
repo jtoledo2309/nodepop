@@ -5,7 +5,7 @@ const Producto = require("../../models/Productos");
 const basicAuth = require("../../lib/basicAuth");
 
 //LISTAR PRODUCTOS
-router.get("/", basicAuth, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const filtro = {};
 
@@ -60,7 +60,7 @@ router.get(
 );
 
 //CREAR NUEVOS PRODUCTOS
-router.post("/", basicAuth, async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const dataNueva = req.body;
 

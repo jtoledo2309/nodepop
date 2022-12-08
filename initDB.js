@@ -26,6 +26,10 @@ async function initUsuarios() {
       email: "user@test.com",
       password: await Usuario.hashPassword("1234"),
     },
+    {
+      email: "user@example.com",
+      password: await Usuario.hashPassword("1234"),
+    },
   ]);
 }
 

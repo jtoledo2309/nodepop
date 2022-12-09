@@ -30,6 +30,8 @@ npm run dev
 npm start
 ```
 
+## Uso de la web
+
 Para comenzar, Nodepop cuenta con una pagina principal (llamada index) que sirve como bienvenida al usuario.
 
 ```
@@ -37,8 +39,18 @@ http://localhost:3000
 ```
 
 Nodepop cuenta con un API en la que podremos ver un archivo json con todos los productos subidos a la plataforma y crear productos nuevos. Para ello es necesario identificarse con las credenciales:<br>
-user: admin <br>
-password: 1234<br>
+
+```
+user: user@example.com
+password: 1234
+```
+
+```
+user: admin@test.com
+password: 1234
+```
+
+Tambien podemos hacer login en la app con esos mismos usuarios y de esta manera ver la seccion de privado, solo disponible para usuarios logeados.
 
 ## URL del API:
 

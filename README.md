@@ -1,5 +1,13 @@
 # Instrucciones para NODEPOP
 
+## Crear el .env
+
+Copiar el contenido de .env.example a .env
+
+```
+cp .env.example .env
+```
+
 ## INICIAR EL PROYECTO
 
 En primera instancia, debemos inicializar la base de datoos. Contiene algunos productos cargados y eliminará los creados en la ultima sesion. El comando para inicializarla es:

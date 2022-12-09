@@ -14,5 +14,7 @@
   "Direccion de email": "Email adress",
   "Contraseña": "Password",
   "Enviar": "Submit",
-  "No compartiremos tu email con nadie": " We'll never share your email with anyone else."
+  "No compartiremos tu email con nadie": " We'll never share your email with anyone else.",
+  "Esta es una pagina de ejemplo para las traducciones": "This is a website made to try how to translate in Node",
+  "El color es azul": "The color is blue"
 }

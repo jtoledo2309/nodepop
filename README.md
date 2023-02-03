@@ -1,3 +1,8 @@
+# Instrucciones para la practica de despliegue de servidores:
+
+URL con el ejercicio 1 (practica de node): http://ec2-34-224-62-31.compute-1.amazonaws.com/
+URL con el ejercicio 2 (practica de React): http://34.224.62.31/login
+
 # Instrucciones para NODEPOP
 
 ## Crear el .env
